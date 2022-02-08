@@ -1,0 +1,210 @@
+Q1.
+import java.util.*;
+public class Main
+{
+    static boolean isNameValid(String name)
+    {
+        int count = 0;
+        boolean valid = true;
+        //normalize the string
+        name = name.toLowerCase();
+        
+        //creating charater array
+        char[] ch = new char[name.length()];
+
+        //copy string to array
+        for (int i = 0; i < name.length(); i++) {
+            ch[i] = name.charAt(i);
+        }
+        
+        //foreach loop to chk if character is vovel or not
+        for (char c : ch) {
+            if(c=='a'||c=='e'|| c=='i'||c=='o'||c=='u')
+            {
+                count++;
+                if(count>2)
+                {
+                    valid = false;
+                    break;
+                }
+            }
+        }
+        return valid;
+    }
+    
+    static boolean isNameValid2(String nm)
+    {
+        
+        boolean val = true;
+        int n = nm.length();
+        for (int i = 1; i < n; i++)
+        if (nm.charAt(i) == 'S' && nm.charAt(i+1) == 'T')
+        {
+            if(nm.charAt(i+2)=='S')
+            {
+                val = false;
+            }
+        }
+        return val;
+    }
+    
+    
+	public static void main(String[] args) {
+	
+		String namechk = "abcSTSdfgh";
+		boolean result1, result2;
+	    result1 = isNameValid(namechk);
+		
+		result2 = isNameValid2(namechk);
+		
+		if(result1 == true && result2 == true)
+		{
+		    System.out.println("Valid");
+		}
+		else{
+		    System.out.println("Invalid");
+		}
+    
+	//	 System.out.println(isNameValid(namechk));
+	}
+}
+/**************************************************************************************************************************************
+***************************************************************************************************************************************
+***************************************************************************************************************************************/
+
+Q2
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+    int n,firstDigit, lastDigit,digits, swappedNum;
+    printf("Enter number: ");  
+    scanf("%d", &n);      //12345
+    //Find last digit of a number
+    lastDigit = n % 10;   //lastDigit = 5
+    //gives total number of digits
+    digits    = (int)log10(n);   
+    //Find first digit
+    firstDigit = (int) (n / pow(10, digits));   //firstDigit = 1
+   // printf("first digit:%d\n", firstDigit);
+    swappedNum  = lastDigit;
+    swappedNum = swappedNum * (int) round(pow(10, digits));
+    swappedNum = swappedNum + n % ((int)round(pow(10, digits)));
+    swappedNum = swappedNum - lastDigit;
+    swappedNum = swappedNum + firstDigit;
+    printf("Number after swapping first and last digit: %d", swappedNum);
+    return 0;
+}
+
+/**************************************************************************************************************************************
+***************************************************************************************************************************************
+***************************************************************************************************************************************/
+
+Q3
+public class Main
+{
+    static void previousPrime(int num){
+    int flag, i, j;
+    int smallestprime=0;
+ 
+   //printf("Enter two range(input integer numbers only):");
+   //Store the range in variables using scanf
+   //scanf("%d %d", &num1, &num2);
+ 
+   //Display prime numbers for input range
+   //printf("Prime numbers from %d and %d are:\n", num1, num2);
+   for(i=2; i<num; ++i)
+   {
+      flag=0;
+      for(j=2; j<=i/2; ++j)
+      {
+         if(i%j==0)
+         {
+            flag=1;
+            break;
+         }
+      }
+      if(flag==0)
+      {
+          smallestprime=i;
+      }
+    }
+    
+    int m=0,flag_var =0;
+    while(smallestprime!=0)
+    {
+        int rem = smallestprime%10;
+        m = rem/2;
+        for(i=2;i<=m;i++){      
+        if(smallestprime%i==0){      
+        System.out.println(" is not prime number" +rem);      
+        flag_var=1;      
+        break;      
+    }      
+   }      
+   if(flag_var==0)  { System.out.println(" is prime number"+rem); }  
+        smallestprime = smallestprime/10;  
+    }
+ // System.out.println(smallestprime);
+}
+    
+	public static void main(String[] args) {
+		int nm = 45;
+		previousPrime(nm);
+	}
+}
+
+/*************************************************************************************************************************************
+**************************************************************************************************************************************
+**************************************************************************************************************************************/
+
+Q4.
+import java.net.URL;
+import java.util.*;
+
+public class Main
+{
+    static boolean isValidURL(String url)
+    {
+        try {
+            //toURI makes object of url passes and chk if correct or malfunctioned object formed
+            new URL(url).toURI();
+            return true;
+        }
+        catch(Exception e){
+            return false;
+        }
+    }
+	public static void main(String[] args) {
+		//System.out.println("Hello World");
+		String url = "https://www.google.com/";
+		if(isValidURL(url) == true)
+		{
+		    System.out.println("The url is valid");
+		}
+		else{
+		    System.out.println("The url is invalid");
+		}
+	}
+}
+
+/***************************************************************************************************************************************
+****************************************************************************************************************************************
+****************************************************************************************************************************************/
+Q5
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+        int i,num;
+        int lcm=9;
+        
+		while(true)
+        {
+		    if(lcm%2==0 && lcm%3==0 && lcm%4==0 && lcm%5==0 && lcm %6 ==0 && lcm%7==0 && lcm%8==0 && lcm%9==0)
+		    {break;}
+		    lcm++;
+        }
+        System.out.println(lcm);
+	}
+}
