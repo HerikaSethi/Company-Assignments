@@ -1,3 +1,114 @@
+Q1. 
+Clockwise Spiral
+
+import java.util.*;
+public class Main
+{
+    static void clockwise(int arr[][], int nrow, int ncol)
+    {
+        int i=0;
+        int k = 0;
+        int startrow=0;
+        int endrow = nrow;
+        int j=0;
+        
+        for(j=0;j<=ncol-1;j++)
+        {
+            System.out.print(arr[i][j]+" ");
+        }
+        //System.out.println(i);
+        //System.out.println(j);
+        j=j-1;
+        
+        for(i=1;i<nrow;i++)
+        {
+            System.out.print(arr[i][j]+" ");
+        }
+       // System.out.println(i);  //3
+       // System.out.println(j);  //2
+        i=i-1;
+      // System.out.println(i);  //2
+      //System.out.println(j);   //2
+        for(j=ncol-2;j>=0;j--)
+        {
+            System.out.print(arr[i][j]+" ");
+        }
+        
+        //System.out.println(i); //2
+        //System.out.println(j);  //-1
+        i=i-1;
+        for(j=0;j<ncol-1;j++)
+        {
+            System.out.print(arr[i][j]+" ");
+        }  
+    }
+    
+	public static void main(String[] args) {
+		int[][] arr = {{1,2,3,4,5},{4,5,6,7,8},{7,8,9,10,11}};
+		int nrow = arr.length;
+		int ncol = arr[0].length;
+		
+		clockwise(arr, nrow, ncol);
+	}
+}
+/**************************************************************************************
+***************************************************************************************/
+
+Anticlockwise Spiral
+
+import java.util.*;
+public class Main
+{
+    static void anticlockwise(int arr[][], int nrow, int ncol)
+    {
+        int i=0;
+        int k = 0;
+        int startrow=0;
+        int endrow = nrow;
+        int j=0;
+        for( j = ncol-1;j>=0;j--)
+        {
+            System.out.print(arr[i][j]+" ");
+        }
+        j=0;
+        // System.out.println(i);
+        // System.out.println(j);
+       
+        for(i = 1; i<=nrow-1 ; i++)
+        {
+          System.out.print(arr[i][j]+" ");
+        }
+        //System.out.println(i); //3
+        //System.out.println(j);
+        i=i-1;
+        
+        for(j=1;j<=ncol-1;j++)
+        {
+            System.out.print(arr[i][j]+" ");
+        }
+        
+        //System.out.println(i);  //2
+        //System.out.println(j);  //3
+        i=i-1;
+        for(j=ncol-1;j>0;j--)
+        {
+            System.out.print(arr[i][j] +" ");
+        }
+        
+    }
+    
+	public static void main(String[] args) {
+		int[][] arr = {{1,2,3,4,5},{4,5,6,7,8},{7,8,9,10,11}};
+		int nrow = arr.length;
+		int ncol = arr[0].length;
+		
+		anticlockwise(arr, nrow, ncol);
+	}
+}
+
+
+/****************************************************************************************
+*****************************************************************************************/
 Q5 with another matrix
 
 public class Main
