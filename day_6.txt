@@ -1,0 +1,257 @@
+Q1
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+
+class person{
+    public:
+    void persondisplay(string name){
+    cout<<"Name:"<<name<<endl;
+    }
+};
+class MP: public person{
+   public:
+    int Mp_spendingLimit = 30000; //1 lakh spendingLimit -- 30 thousand
+    string dname;
+    
+    virtual void getConstituency(string constituency){
+        cout<<"MP Constituency name:"<<constituency<<endl;
+    } 
+    
+    virtual void getDriver(string dname){
+       cout<<"MP Driver's name:"<<dname<<endl;
+            }
+};
+
+class PM : public MP{
+    public:
+    int PM_spending_limit = 8500000;   //1 crore spending limit -- 85lakh
+    
+    void getConstituency(string constituency){
+        cout<<"PM Constituency name:"<<constituency<<endl;
+    }
+    void getDriver(string dname){
+       cout<<"PM Driver's name:"<<dname<<endl;
+    }
+};
+class Minister: public PM{
+    public:
+    int minister_spending_limit = 1100000;   //10 lakh spending limit -- 11lakh
+    void getConstituency(string constituency){
+        cout<<"Minister Constituency name:"<<constituency<<endl;
+    }
+    void getDriver(string dname){
+       cout<<"Minister Driver's name:\t"<<dname<<endl;
+    }
+};
+class comissioner: public Minister{
+    public:
+    bool can_arrest = false;
+    void check(){
+    if(Mp_spendingLimit > 100000)
+    {
+        cout<<"MP exceeded spending limit"<<endl;
+        can_arrest = true;
+        cout<<"Can be arrested by comissioner?:\t"<<can_arrest;
+    }
+    else if(PM_spending_limit>10000000)
+    {
+        cout<<"PM exceeded spending limit"<<endl;
+        can_arrest = true;
+        cout<<"Can be arrested by comissioner?:\t"<<can_arrest;
+    }
+    else if(minister_spending_limit>1000000)
+    {
+        cout<<"minister exceeded spending limit"<<endl;
+        can_arrest=true;
+        cout<<"Can be arrested by comissioner?\t"<<can_arrest;
+    }
+    else{
+        cout<<"Nobody exceeded spending limit"<<endl;
+        cout<<"MP spending:\t"<<Mp_spendingLimit<<endl;
+        cout<<"PM spending:\t"<<PM_spending_limit<<endl;
+        cout<<"Minister spending:\t"<<minister_spending_limit<<endl;
+    }
+    }
+};
+int main()
+{
+    MP m;
+    m.persondisplay("Raghav");
+    m.getConstituency("Punjabi Bagh");
+    m.getDriver("Vijay");
+    cout<<"-----------------------------------------"<<endl;
+    MP* bptr; //base class containig virtual function
+    PM p; //child class containig new implementation
+    bptr = &p;
+    p.persondisplay("Vishal Singh");
+    bptr -> getConstituency("East Kailash nagar");
+    bptr -> getDriver("Tarun");
+    cout<<"------------------------------------------"<<endl;
+    cout<<"Spending limit check"<<endl;
+    comissioner c;
+    c.check();
+    return 0;
+}
+
+
+/***********************************************************************************/
+Q2
+#include <iostream>
+#include <string.h>
+using namespace std;
+ 
+// base class
+class inverter_power_rating
+{
+    protected:
+    int current;
+    int operating_voltage;
+    inverter_power_rating()  //constructor as every inverter has power rating
+    {
+        cout<<"Current\t"<<endl;
+        cin>>current;
+        cout<<"Operating_voltage\t"<<endl;
+        cin>>operating_voltage;
+        int pr = current * operating_voltage;
+        cout<<"Power Rating::"<<pr<<endl;
+    }
+};
+ 
+class solar_inverter : protected inverter_power_rating
+{
+    public:
+    int photo_voltaic_module; 
+    bool is_battery;
+    bool is_grid;
+    void solar_panel()
+    {
+        cout<<"Photovoltaic cells:\t"<<endl;
+        cin>>photo_voltaic_module;
+    }
+    virtual void solar_technology()
+    {is_battery = false;}
+    virtual void grid_version()
+    {is_grid = true;}
+};
+
+class non_solar_inverter : protected inverter_power_rating
+{
+    bool is_battery = true;
+};
+
+class PCU : public solar_inverter
+{
+  public:
+  bool is_battery;
+  bool is_grid;
+  int nominal_battery_bank_volt = 48;
+  int lowVoltage_Range = 80;
+  int upVoltage_Range = 165;
+  
+  void solar_technology() {is_battery = true;}
+  void grid_version() {is_grid = false;}
+  
+  void show(){
+      solar_panel();
+      solar_technology();
+      grid_version();
+      
+      cout<<"No. of photovoltaic cells:\t "<<photo_voltaic_module<<endl;
+      cout<<"Is Battery version:\t"<<is_battery<<endl;
+      cout<<"Grid:\t"<<is_grid<<endl;
+      cout<<"Nominal battery voltage:\t"<<nominal_battery_bank_volt<<" V"<<endl;
+      cout<<"Voltage range:\t"<<lowVoltage_Range<<"-"<<upVoltage_Range<<" V"<<endl;
+  }
+};
+ 
+class GTI : public solar_inverter
+{
+    public:
+    string type = "low frequency";  /*low frequency or high frequency or transformerless*/
+    bool is_battery;
+    bool is_grid;
+    void solar_technology() {is_battery = false;}
+    void grid_version() {is_grid = true;}
+    
+    void show()
+    {
+          solar_panel();
+          solar_technology();
+          grid_version();
+        
+          cout<<"No. of Photovoltaic cell:\t"<<photo_voltaic_module<<endl;
+          cout<<"Is Battery version:\t"<<is_battery<<endl;
+          cout<<"Grid:\t"<<is_grid<<endl;
+          cout<<"Type of GTI:\t"<<type<<endl;
+    }
+};
+
+class Regalia : public solar_inverter  /* */
+{
+    public:
+    int back_up_time = 6;
+
+    void show()
+    {
+       cout<<"backup time\t"<<back_up_time<<endl;
+    }
+};
+
+class Zelio : public non_solar_inverter
+{
+    public:
+    void show()
+    {
+        cout<<"Home Inverter";
+    }
+    
+};
+
+class Icruze : public non_solar_inverter
+{
+     public:
+     void show()
+     {
+         cout<<"Home Inverter";
+     }
+};
+
+int main() {
+   /*
+   solar_inverter* bptr;  //base class containing virtual func
+   PCU p;    //child class containing new implementation
+   bptr = &p;
+   //virtual function, binded at runtime
+   bptr->solar_technology(); 
+   */
+  
+    cout<<"PCU"<<endl;
+    PCU obj;
+    obj.show();
+    cout<<"----------------"<<endl;
+    cout<<"GTI"<<endl;
+    GTI g;
+    g.show();
+    cout<<"----------------"<<endl;
+    cout<<"Regalia"<<endl;
+    Regalia r;
+    r.show();
+    /*cout<<"----------------"<<endl;
+    cout<<"Zelio"<<endl;
+    Zelio z;
+    z.show();
+    cout<<"----------------"<<endl;
+    cout<<"Icruze"<<endl;
+    Icruze i;
+    i.show();*/
+    return 0;
+}

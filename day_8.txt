@@ -1,0 +1,91 @@
+Q2.
+import java.util.*;
+import java.util.Scanner;
+
+interface user_details{ void details();}
+interface notes_denomination{ void denomination(int[] arr, int with_amount);}
+/*class atm{
+    void denomination(int[] arr)
+    {
+      for()
+    }
+    
+}*/
+class user implements user_details{
+    static int bankBalance =0;
+   public void details(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter your name: ");
+        String nm = sc.nextLine();
+        System.out.println("Enter Address: ");
+        String address = sc.nextLine();
+        System.out.println("Enter mobile number");
+        String number = sc.nextLine();
+    } 
+}
+
+class cash_deposit extends user{
+    void deposit(int dep_amount)
+    {
+        bankBalance = dep_amount;
+        System.out.println("Your current balance is: "+bankBalance);
+    }
+}
+class cash_withdraw extends cash_deposit implements notes_denomination{
+    public void denomination(int arr[] , int with_amount)
+    {
+        //System.out.println("from withdraw "+bankBalance);
+        if(with_amount>bankBalance){
+            System.out.println("Insufficient balance");
+        }else{
+            int temp = with_amount;
+            for(int i=0;i<arr.length;i++)
+            {
+                System.out.println(arr[i]+" : "+(temp/arr[i]));
+                temp = temp%arr[i];
+            }
+        }
+    }
+}
+
+public class Main
+{
+	public static void main(String[] args) {
+		int[] notes={2000,500,200,100,50,20,10,5,1};
+		
+		Scanner sc = new Scanner(System.in);
+		
+		user u = new user();
+		u.details();
+		cash_deposit d = new cash_deposit();
+		cash_withdraw w = new cash_withdraw();
+	//	atm a = new atm();
+	//	a.denomination(notes);
+
+		System.out.println("Do you want to deposit?");
+		System.out.println("Type yes to deposit");
+		String dep = sc.nextLine();
+		
+		
+		if(dep.equalsIgnoreCase("yes")){
+		    System.out.println("Enter amount you want to deposit:");
+		    int deposit_amt = sc.nextInt();
+		    d.deposit(deposit_amt);
+		}
+		
+	/*	System.out.println("Do you want to withdraw?");
+		System.out.println("Type yes to withdraw");
+		String m = sc.nextLine();
+		String x = sc.nextLine();
+	*/	
+		
+	//	if(m.equalsIgnoreCase("yes"))
+	//	{
+		    System.out.println("enter amount to withraw");
+		    int w_amt = sc.nextInt();
+		    w.denomination(notes,w_amt);
+	//	}
+		
+		
+	}
+}

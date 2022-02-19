@@ -1,0 +1,232 @@
+Q1
+
+import java.util.*;
+import java.util.Scanner;
+import java.lang.Thread;
+import java.io.*;
+
+interface disp_contacts{ void contactList(String[] str); }
+interface search_contact{ void search(String[] str, String name); }
+interface status_post{ void post(String user_name);}
+interface check_status{ void view_status(); }
+
+class contacts implements disp_contacts{
+   public void contactList(String[] str)
+    {
+        for(int i=0;i<str.length;i++)
+        {
+            System.out.println(str[i]);
+        }
+    }
+}
+
+class chat implements search_contact{
+    
+   static void text_message()
+   {
+       Scanner sc = new Scanner(System.in);
+       System.out.println("Enter your message");
+       String txtmsg = sc.nextLine();
+       System.out.println("Sending...");
+       try{
+       Thread.sleep(1000);
+       System.out.println("Message Sent");
+       }catch(Exception e){System.out.println(e);}
+   }
+   static void audio_message(){
+       System.out.println("Sending...");
+       try{
+           Thread.sleep(1000);
+           System.out.println("Audio sent");
+       }catch(Exception e){System.out.println(e);}
+   }
+   
+   static void video_message(){
+       System.out.println("Sending...");
+       try{
+           Thread.sleep(1000);
+           System.out.println("Video sent");
+       }catch(Exception e){
+           System.out.println(e);
+       }
+   }
+   
+   //searching name in contact list
+   public void search(String[] str, String name)
+    {
+    
+        Scanner sc = new Scanner(System.in);
+        for(String s: str) {
+             if(s.trim().contains(name))
+             {
+                 //flag =1;
+                 System.out.println("Enter type of message");
+                 System.out.println("1. Text");
+                 System.out.println("2. Audio");
+                 System.out.println("3. Video");
+                 int ch = sc.nextInt();
+                 switch(ch)
+                 {
+                     case 1:
+                         text_message();
+                         break;
+                     case 2:
+                         audio_message();
+                         break;
+                     case 3:
+                         video_message();
+                         break;
+                 }
+             }
+        }
+        
+        //
+    }
+
+}
+
+class status extends contacts implements status_post,check_status{
+    public void post(String user_name)
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Hey "+ user_name + " Do you want to post text status or image status?");
+        String status_type = sc.nextLine();
+        if(status_type.equalsIgnoreCase("text"))
+        {
+            System.out.println("Enter text to post status");
+            String post_text = sc.nextLine();
+            System.out.println("Sending text status...");
+            try{
+                Thread.sleep(1000);
+                System.out.println("Text status posted sucessully!!");
+            }catch(Exception e){System.out.println(e);}
+        }
+        else if(status_type.equalsIgnoreCase("image"))
+        {
+            System.out.println("Sending image on status...");
+            try{
+                Thread.sleep(1000);
+                System.out.println("Image posted successfully on status!!");
+            }catch(Exception e){System.out.println(e);}
+        }
+    }
+    
+    public void view_status(){
+        System.out.println("You are viewing status of your contacts");
+    }
+}
+
+public class Main
+{
+	public static void main(String[] args) {
+	    
+	    String[] str = {"ravi","vinita","payal","kanchan"};  // alternative :: Arraylist
+	    Scanner sc = new Scanner(System.in);
+	    
+	    System.out.println("Enter your name");
+	    String user_name = sc.nextLine();
+	    System.out.println("Hello "+user_name+"!");
+	    
+	    System.out.println("---------Your Contact List----------");
+		contacts c = new contacts();
+		c.contactList(str);
+		System.out.println("------------------------------------");
+		/***********************************************************************/
+		
+		System.out.println("Enter name to chat with");
+		String n = sc.nextLine();
+		chat ch = new chat();
+		ch.search(str, n);
+		
+		/**********************************************************************/
+		System.out.println("--------------Your Status-----------");
+		status s = new status();
+		s.post(user_name);
+		
+
+		System.out.println("Do you want to view status of your contacts?");
+		System.out.println("Type yes to continue and no to exit");
+		String view_status_response = sc.nextLine();
+		if(view_status_response.equalsIgnoreCase("yes"))
+		{
+		    s.view_status();
+		}
+		else{
+		    System.out.println("Thanks for using application!");
+		}
+		
+		
+	}
+}
+
+
+/**************************************************************************
+***************************************************************************/
+Q2.
+{
+"firstname" : "leena",
+"lastname" : "gupta",
+"salary" : "45000",
+"ismarried" : "true",
+"grade" : null,
+"Address" : "Kalkaji",
+"mobilenumbers" : [
+{ "type" : "office" , "number" : "0120 1000 456" },
+{ "type" : "home" ,  "number" : "011 23237881" }
+     ],
+"address": [
+{ "1" : "Govind puri" , "2" : "Kalkaji" , "3" : "Mandi house" }
+  ]
+}
+
+/***************************************************************************
+****************************************************************************/
+Q3
+import java.util.*;
+
+public class Main
+{
+	public static void main(String[] args) {
+		JSONObject empdetails = new JSONObject();
+		empdetails.put("firstname","John");
+		empdetails.put("lastname","smith");
+		empdetails.put("age",25);
+		//storing details into object create -- empobject
+		JSONObject empobject = new JSONObject();
+		empobject.put("employee", empdetails);
+		
+		//adding employees to the list
+	
+	    JSONArray employeeList = new JSONArray();
+	    employeeList.add(empobject);
+	    System.out.println(employeeList);
+	    
+	    /**********/
+	    
+	    Map<String,String> map = new HashMap<String, String>();
+	    
+	    map.put("streetAddress","21 2nd street");
+	    map.put("city","newYork");
+	    map.put("state","newYork");
+	    map.put("postalCode","10021");
+	    
+	    //convertig map to JSON
+	    
+	    String jsonstr = JSONValue.toJSONString(map);
+	    System.out.println(jsonstr);
+	    
+	    
+	    Map<String,String> map1 = new HashMap<String, String>();
+	    
+	    map.put("type","home");
+	    map.put("number","212000211");
+	    map.put("type","fax");
+	    map.put("number","460004823");
+	    
+	    //convertig map to JSON
+	    
+	    String jsonstr1 = JSONValue.toJSONString(map1);
+	    System.out.println(jsonstr1);
+	    
+	}
+}
