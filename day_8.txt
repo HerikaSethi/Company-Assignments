@@ -1,3 +1,90 @@
+Q1.
+/******************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+import java.util.*;
+import java.util.Scanner;
+
+interface message{ void msg();}
+interface dedicate{ void dcd();}
+class brick{
+    public static void owner(String[] str){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("owner of bricks are:");
+        for(int i=0;i<str.length;i++)
+        {
+            System.out.println(i+"th brick "+str[i]);
+        }
+    }
+}
+class read_write extends brick{
+    void input_readWrite(String[] str)
+    {
+        String[] female_arr = new String[str.length];
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Do you want to read or comment?");
+        String input = sc.nextLine();
+        if(input.equalsIgnoreCase("read"))
+        {
+            System.out.println("Whose brick you want to read?");
+           // String r = sc.nextLine();
+            String read = sc.nextLine();
+            for(int i=0;i<str.length;i++)
+            {
+                if(str[i].equalsIgnoreCase(read))
+                {
+                    System.out.println(str[i]);
+                    break;
+                }
+            }
+        }
+        else{
+            int add_female =0;
+            System.out.println("Whose brick you want to write on?");
+            String writeOn = sc.nextLine();
+             for(int i=0;i<str.length;i++)
+            {
+                if(str[i].equalsIgnoreCase(writeOn))
+                {
+                    System.out.println("Do you want to comment a male name or female name?");
+                    String gender = sc.nextLine();
+                    if(gender.equalsIgnoreCase("female"))
+                    {
+                        System.out.println("Enter female name:");
+                        String comment_female = sc.nextLine();
+                        str[i] = str[i]+" "+comment_female;
+                        System.out.println(str[i]);
+                        
+                        female_arr[add_female] = comment_female;   //while loop -- if yes then true--run
+                        add_female++;                        //else add_female ++ and exit
+                        
+                        break;
+                    }
+                    /*String comment = sc.nextLine();
+                    str[i] = str[i]+" "+comment;
+                    System.out.println(str[i]);
+                    break;*/
+                }
+            }
+        }
+    }
+}
+public class Main
+{
+	public static void main(String[] args) {
+		String[] arr = {"priya", "rishi", "arjun", "meeta"};
+		brick b = new brick();
+		b.owner(arr);
+		read_write r = new read_write();
+		r.input_readWrite(arr);
+	}
+}
+/***************************************************************/
+
 Q2.
 import java.util.*;
 import java.util.Scanner;
@@ -87,5 +174,246 @@ public class Main
 	//	}
 		
 		
+	}
+}
+/*************************************************************************
+**************************************************************************/
+Q1 modified
+/******************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+import java.util.*;
+import java.util.Scanner;
+
+interface message{ void msg();}
+interface dedicate{ void dcd();}
+class brick{
+    public static void owner(String[] str){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("owner of bricks are:");
+        for(int i=0;i<str.length;i++)
+        {
+            System.out.println(i+"th brick "+str[i]);
+        }
+    }
+}
+class read_write extends brick{
+    void input_readWrite(String[] str)
+    {
+       // String[] female_arr = new String[str.length];
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Do you want to read or write comment?");
+        String input = sc.nextLine();
+        if(input.equalsIgnoreCase("read"))
+        {
+            System.out.println("Whose brick you want to read?");
+           // String r = sc.nextLine();
+            String read = sc.nextLine();
+            for(int i=0;i<str.length;i++)
+            {
+                if(str[i].equalsIgnoreCase(read))
+                {
+                    System.out.println(str[i]);
+                    break;
+                }
+            }
+        }
+        else{
+           // int add_female =0;
+            System.out.println("Whose brick you want to write on?");
+            String writeOn = sc.nextLine();
+             for(int i=0;i<str.length;i++)
+            {
+                if(str[i].equalsIgnoreCase(writeOn))
+                {
+                    List<String> strr = new ArrayList<String>(Arrays.asList(str));
+                    List<String> female_arr = new ArrayList<String>(); 
+                    //int add_female = 0;   
+                    System.out.println("Do you want to comment a male name or female name?");
+                    String gender = sc.nextLine();
+                    int flag = 1;
+                   // while(flag==1)
+                    //{
+                    if(gender.equalsIgnoreCase("female"))
+                    {
+                      //  while(flag == 1){
+                        System.out.println("Enter female name:");
+                        String comment_female = sc.nextLine();
+                        str[i] = str[i]+" "+comment_female;
+                        System.out.println(str[i]);
+                        
+                        female_arr.add(comment_female);   //while loop -- if yes then true--run
+                                                          //else add_female ++ and exit
+                            System.out.println(female_arr);
+                      System.out.println("Do you want to add more female name?");
+                      System.out.println("press 1 to add");
+                      flag = sc.nextInt();
+                        
+                        
+                       
+                    }
+                    /*String comment = sc.nextLine();
+                    str[i] = str[i]+" "+comment;
+                    System.out.println(str[i]);
+                    break;*/
+                }
+            }
+        }
+    }
+}
+public class Main
+{
+	public static void main(String[] args) {
+		String[] arr = {"priya", "rishi", "arjun", "meeta"};
+		brick b = new brick();
+		b.owner(arr);
+		read_write r = new read_write();
+		r.input_readWrite(arr);
+	}
+}
+/****************************************************************************/
+***********************************************************************/
+import java.util.*;
+import java.util.Scanner;
+
+interface message{ void msg();}
+interface dedicate{ void dcd();}
+class brick{
+    public static void owner(String[] str){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("owner of bricks are:");
+        for(int i=0;i<str.length;i++)
+        {
+            System.out.println(i+"th brick "+str[i]);
+        }
+    }
+}
+
+
+class read_write extends brick{
+  /* static void listfreqCount(ArrayList<String> malearrstr){
+         Set<String> distinct = new HashSet<>(malearrstr);
+        for (String s: distinct) {
+            System.out.println(s + ": " + Collections.frequency(malearrstr, s));
+    }*/
+    
+    
+    void input_readWrite(String[] str)
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Do you want to read or write comment?");
+        String input = sc.nextLine();
+        if(input.equalsIgnoreCase("read"))
+        {
+            System.out.println("Whose brick you want to read?");
+            String read = sc.nextLine();
+              for(int i=0;i<str.length;i++)
+              {
+                if(str[i].equalsIgnoreCase(read))
+                {
+                    System.out.println(str[i]);
+                    break;
+                }
+              }
+        }
+        
+        else{
+            int loopchk =0;
+            String writeOn;
+            // while(loopchk<5)
+              //{
+              List<String> strr = new ArrayList<String>(Arrays.asList(str));
+              List<String> female_arr = new ArrayList<String>(); 
+              List<String> male_arr = new ArrayList<String>();
+               System.out.println("Whose brick you want to write on?");
+               writeOn = sc.nextLine();
+               for(int i=0;i<str.length;i++)
+                 {
+                   if(str[i].equalsIgnoreCase(writeOn))
+                     {
+                      // List<String> strr = new ArrayList<String>(Arrays.asList(str));
+                      // List<String> female_arr = new ArrayList<String>(); 
+                      // List<String> male_arr = new ArrayList<String>();
+                       
+                       System.out.println("Do you want to comment all male name or all female name?");
+                       String gender = sc.nextLine();
+                       
+                       int flag = 0;
+                      // female_arr.add(arr[i]);
+                       if(gender.equalsIgnoreCase("female"))
+                           {
+                               System.out.println("how many female names?");
+                               int fn = sc.nextInt();
+                             while(flag <= fn){
+                             System.out.println("Enter female name:");
+                             String comment_female = sc.nextLine();
+                             str[i] = str[i]+" "+comment_female;
+                             System.out.println(str[i]);
+                             
+                             female_arr.add(comment_female);   //while loop -- if yes then true--run
+                                                          //else add_female ++ and exit
+                             System.out.println(female_arr);
+                             flag++;
+                             }//while closing
+                
+                            }
+                        else if(gender.equalsIgnoreCase("male"))
+                           {
+                               int mflag =0;
+                               System.out.println("How many male names?");
+                               int mn = sc.nextInt();
+                               while(mflag<=mn)
+                               {
+                                 System.out.println("Enter male name");
+                                 String comment_male= sc.nextLine();
+                                 str[i] = str[i]+" "+comment_male;
+                                 System.out.println(str[i]);
+                                 male_arr.add(comment_male);
+                               ///  System.out.println(male_arr);
+                               
+                                 mflag++;
+                               }
+                           }
+                    
+                       }//if
+                     }//for
+                     System.out.println("---------------");
+               // System.out.println(male_arr);
+        
+                Set<String> distinct = new HashSet<>(male_arr);
+                for (String s: distinct) {
+                System.out.println(s + ": " + Collections.frequency(male_arr, s));
+             
+             // List<String> almen = new ArrayList<String>(distinct);
+ 
+        // sort using Collections.sort(); method
+        //Collections.sort(almen);
+ 
+ 
+        // After Sorting
+      /*  System.out.println("\n\nAfter Sorting : Sorted order\n");
+        for(String coach : almen) {
+            System.out.println(coach);
+        }*/
+                
+                System.out.println(female_arr);
+                }
+             
+             
+            }//else    
+        }//fun
+   }//class
+public class Main
+{
+	public static void main(String[] args) {
+		String[] arr = {"priya", "rishi", "arjun", "meeta"};
+		brick b = new brick();
+		b.owner(arr);
+		read_write r = new read_write();
+		r.input_readWrite(arr);
 	}
 }

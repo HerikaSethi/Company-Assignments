@@ -1,4 +1,4 @@
-
+Q1.
 import java.util.*;
 public class Main
 {
@@ -170,3 +170,5 @@ public class Main
 	    reverseOnlyVovels(rev);
 	}
 }
+
+Q2 

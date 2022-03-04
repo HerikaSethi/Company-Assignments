@@ -166,14 +166,12 @@ Q2.
 {
 "firstname" : "leena",
 "lastname" : "gupta",
-"salary" : "45000",
-"ismarried" : "true",
+"salary" : 45000,
+"ismarried" : true,
 "grade" : null,
 "Address" : "Kalkaji",
 "mobilenumbers" : [
-{ "type" : "office" , "number" : "0120 1000 456" },
-{ "type" : "home" ,  "number" : "011 23237881" }
-     ],
+"0120 1000 456", "011 23237881" ],
 "address": [
 { "1" : "Govind puri" , "2" : "Kalkaji" , "3" : "Mandi house" }
   ]
@@ -229,4 +227,18 @@ public class Main
 	    System.out.println(jsonstr1);
 	    
 	}
+}
+/****************************************************************************
+*****************************************************************************/
+class employee{
+	String firstName;
+	String lastName;
+	int age;
+	Map<String,Object>phoneNumbers;
+}
+class address{
+	String streetAddress;
+	String city;
+	String state;
+	int postlCode; 
 }
